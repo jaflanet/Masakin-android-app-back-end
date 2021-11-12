@@ -7,8 +7,13 @@ router
     .post(controller.addOrder);
 
 router
-    .route("/:orderId")
-    .get(controller.getOrderById);
+    .route("/:orderNumber")
+    .get(controller.getOrderByOrderNumber);
+
+// router
+//     .route(":/accountId/:restaurantId/:orderNumber")
+//     .get(controller.getOrderByEachOrder);
+
 
 
 

@@ -9,7 +9,7 @@ app.use(express.json()); // parse json bodies in the request object
 // Redirect requests to endpoint starting with /posts to postRoutes.js
 app.use("/restaurant", require("./routes/restaurantRoutes"));
 app.use("/menu", require("./routes/menuRoutes"));
-// app.use("/order", require("./routes/orderRoutes"));
+app.use("/order", require("./routes/orderRoutes"));
 app.use("/account", require("./routes/accountRoutes")); 
 
 // Global Error Handler. IMPORTANT function params MUST start with err
