@@ -1,18 +1,18 @@
-const router = require('express').Router()
-const controller = require('../controllers/menuController')
+const router = require("express").Router();
+const controller = require("../controllers/menuController");
+const upload = require("../config/multerConfig");
 
 router
-    .route("/")
-    .get(controller.getAllMenu)
-    .post(controller.addMenu);
+  .route("/")
+  .get(controller.getAllMenu)
+  .post(upload.single("image"), controller.addMenu);
 
-    router 
-    .route("/:menuId")
-    .put(controller.updateMenu)
-    .delete(controller.deleteMenu);
+router.route("/:restaurantId").get(controller.getMenuByRestaurantId);
 
 router
-    .route("/:restaurantId")
-    .get(controller.getMenuByRestaurantId);
+  .route("/:restaurantId/:menuId")
+  .get(controller.getMenuByMenuId)
+  .put(controller.updateMenu)
+  .delete(controller.deleteMenu);
 
-module.exports = router; 
+module.exports = router;
