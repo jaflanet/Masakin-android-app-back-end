@@ -55,15 +55,21 @@ exports.deleteMenu = async (req, res) => {
 };
 
 exports.updateMenu = async (req, res) => {
-  const query = `UPDATE menu SET restaurantId = '${req.body.restaurantId}', menuTitle = '${req.body.menuTitle}',type = '${req.body.type}', price = '${req.body.price}', description = '${req.body.description}', photo = '${req.body.photo}' WHERE menuId = ${req.params.menuId} AND restaurantId = '${req.params.restaurantId}'`;
-  pool.execute(query, function (err, result) {
-    if (err) {
-      res.send("error");
-      throw err;
+  await cloudinary.uploader.upload(
+    req.file.path,
+    { dpr: "auto", responsive: true, width: "auto", crop: "scale" },
+    (error, result) => {
+      const query = `UPDATE menu SET restaurantId = '${req.body.restaurantId}', menuTitle = '${req.body.menuTitle}',type = '${req.body.type}', price = '${req.body.price}', description = '${req.body.description}', photo = '${result.secure_url}' WHERE menuId = ${req.params.menuId} AND restaurantId = '${req.params.restaurantId}'`;
+      pool.execute(query, function (err, result) {
+        if (err) {
+          res.send("error");
+          throw err;
+        }
+        console.log("berhasil");
+        res.send("berhasil");
+      });
     }
-    console.log("berhasil");
-    res.send("berhasil");
-  });
+  );
 };
 
 exports.addMenu = async (req, res) => {

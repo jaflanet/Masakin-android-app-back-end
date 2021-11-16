@@ -12,7 +12,7 @@ router.route("/:restaurantId").get(controller.getMenuByRestaurantId);
 router
   .route("/:restaurantId/:menuId")
   .get(controller.getMenuByMenuId)
-  .put(controller.updateMenu)
+  .put(upload.single("image"), controller.updateMenu)
   .delete(controller.deleteMenu);
 
 module.exports = router;
