@@ -18,7 +18,7 @@ exports.getAllLogin = async (req, res) => {
 };
 
 exports.addLogin = async (req, res, next) => {
-  const query = `INSERT INTO login VALUES ('${req.body.email}', '${req.body.password}')`;
+  const query = `INSERT INTO login(email, password) VALUES ('${req.body.email}', '${req.body.password}')`;
   pool.execute(query, function (err, result) {
     if (err) {
       res.send("error");
