@@ -25,6 +25,9 @@ exports.addLogin = async (req, res, next) => {
       throw err;
     }
     console.log("berhasil");
-    res.send("berhasil");
+    res.json({
+      username: `${req.body.email}`,
+      password: `${req.body.password}`,
+    });
   });
 };
