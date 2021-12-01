@@ -12,6 +12,6 @@ router
   .delete(controller.deleteAccount)
   .put(upload.single("image"), controller.updateAccount);
 
-router.route("/byemail").get(controller.getAccountByEmail);
+router.route("/").get(controller.getAccountByEmail);
 
 module.exports = router;

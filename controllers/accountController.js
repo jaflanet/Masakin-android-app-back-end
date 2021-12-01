@@ -19,7 +19,7 @@ exports.getAllAccount = async (req, res) => {
 };
 
 exports.getAccountByEmail = async (req, res) => {
-  const query = `SELECT * FROM account WHERE email = '${req.body.email}'`;
+  const query = `SELECT * FROM account WHERE email = '${req.params.email}'`;
   pool.execute(query, function (err, result) {
     if (err) {
       res.send("error");
