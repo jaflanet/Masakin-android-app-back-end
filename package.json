@@ -10,6 +10,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "body-parser": "^1.19.0",
     "cloudinary": "^1.27.1",
     "data-uri-to-buffer": "^4.0.0",
     "datauri": "^4.1.0",

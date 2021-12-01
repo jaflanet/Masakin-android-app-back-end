@@ -17,17 +17,14 @@ exports.getAllLogin = async (req, res) => {
   });
 };
 
-exports.addLogin = async (req, res, next) => {
-  const query = `INSERT INTO login(email, password) VALUES ('${req.body.email}', '${req.body.password}')`;
+exports.addLogin = async (req, res) => {
+  const query = `SELECT * FROM account WHERE email = '${req.body.email}' AND password = '${req.body.password}'`;
   pool.execute(query, function (err, result) {
     if (err) {
       res.send("error");
       throw err;
     }
-    console.log("berhasil");
-    res.json({
-      username: `${req.body.email}`,
-      password: `${req.body.password}`,
-    });
+    console.log(result);
+    res.send(result);
   });
 };
