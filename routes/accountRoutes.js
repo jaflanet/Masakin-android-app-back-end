@@ -10,7 +10,8 @@ router
 router
   .route("/:accountId")
   .delete(controller.deleteAccount)
-  .put(upload.single("image"), controller.updateAccount)
-  .get(controller.getAccountById);
+  .put(upload.single("image"), controller.updateAccount);
+
+router.route("/byemail").post(controller.getAccountByEmail);
 
 module.exports = router;

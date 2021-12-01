@@ -7,7 +7,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 const { cloudinary } = require("../config/cloudinaryConfig");
 
 exports.getAllAccount = async (req, res) => {
-  const query = `SELECT * FROM account WHERE '${req.body.email}`;
+  const query = "SELECT * FROM account";
   pool.execute(query, function (err, result) {
     if (err) {
       res.send("error");
@@ -18,8 +18,8 @@ exports.getAllAccount = async (req, res) => {
   });
 };
 
-exports.getAccountById = async (req, res) => {
-  const query = `SELECT * FROM account WHERE accountId = '${req.params.accountId}'`;
+exports.getAccountByEmail = async (req, res) => {
+  const query = `SELECT * FROM account WHERE email = '${req.body.email}'`;
   pool.execute(query, function (err, result) {
     if (err) {
       res.send("error");
