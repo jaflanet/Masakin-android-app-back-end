@@ -7,7 +7,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 const { cloudinary } = require("../config/cloudinaryConfig");
 
 exports.getAllAccount = async (req, res) => {
-  const query = "SELECT * FROM account";
+  const query = `SELECT * FROM account WHERE '${req.body.email}`;
   pool.execute(query, function (err, result) {
     if (err) {
       res.send("error");
