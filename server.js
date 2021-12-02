@@ -11,6 +11,7 @@ app.use("/menu", require("./routes/menuRoutes"));
 app.use("/order", require("./routes/orderRoutes"));
 app.use("/account", require("./routes/accountRoutes"));
 app.use("/login", require("./routes/loginRoutes"));
+app.use("/testorder", require("./routes/testOrderRoutes"));
 
 // Global Error Handler. IMPORTANT function params MUST start with err
 app.use((err, req, res, next) => {
@@ -19,7 +20,7 @@ app.use((err, req, res, next) => {
   console.log(err.code);
 
   res.status(500).json({
-    message: "Something went rely wrong",
+    message: "Something went really wrong",
   });
 });
 
