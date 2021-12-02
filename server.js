@@ -12,6 +12,7 @@ app.use("/order", require("./routes/orderRoutes"));
 app.use("/account", require("./routes/accountRoutes"));
 app.use("/login", require("./routes/loginRoutes"));
 app.use("/testorder", require("./routes/testOrderRoutes"));
+app.use("/signup", require("./routes/signupRoutes"));
 
 // Global Error Handler. IMPORTANT function params MUST start with err
 app.use((err, req, res, next) => {
