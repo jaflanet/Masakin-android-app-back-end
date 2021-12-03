@@ -19,7 +19,7 @@ exports.getAllAccount = async (req, res) => {
 };
 
 exports.getAccountByEmail = async (req, res) => {
-  const query = `SELECT * FROM account WHERE email = '${req.query.email}'`;
+  const query = `SELECT * FROM account WHERE email = '${req.body.email}'`;
   pool.execute(query, function (err, result) {
     if (err) {
       res.send("error");
@@ -65,7 +65,7 @@ exports.addAccount = async (req, res) => {
     req.file.path,
     { dpr: "auto", responsive: true, width: "auto", crop: "scale" },
     (error, result) => {
-      const query = `INSERT INTO account(email, password, name, accPhoneNumber, address, profilePicture) VALUES ('${req.body.email}', '${req.body.password}', '${req.body.name}', '${req.body.accPhoneNumber}', '${req.body.address}', '${result.secure_url}')`;
+      const query = `INSERT INTO account(email, password, name, accPhoneNumber, address, profilePicture, accountType) VALUES ('${req.body.email}', '${req.body.password}', '${req.body.name}', '${req.body.accPhoneNumber}', '${req.body.address}', '${result.secure_url}', '${req.body.accountType})`;
       pool.execute(query, function (err, result) {
         if (err) {
           res.send("error");
