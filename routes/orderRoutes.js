@@ -3,6 +3,6 @@ const controller = require("../controllers/orderController");
 
 router.route("/").get(controller.getAllOrder).post(controller.addOrder);
 
-router.route("/:orderNumber").get(controller.getOrderByOrderNumber);
+router.route("/byemail").get(controller.getOrderByEmail);
 
 module.exports = router;

@@ -6,7 +6,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 exports.getAllOrder = async (req, res) => {
-  const query = "SELECT * FROM orderFood";
+  const query = "SELECT * FROM orderMenu";
   pool.execute(query, function (err, result) {
     if (err) {
       res.send("error");
@@ -17,8 +17,8 @@ exports.getAllOrder = async (req, res) => {
   });
 };
 
-exports.getOrderByOrderNumber = async (req, res) => {
-  const query = `SELECT * FROM orderFood WHERE orderNumber = '${req.params.orderNumber}'`;
+exports.getOrderByEmail = async (req, res) => {
+  const query = `SELECT * FROM orderMenu WHERE email = '${req.query.email}'`;
   pool.execute(query, function (err, result) {
     if (err) {
       res.send("error");
@@ -30,7 +30,7 @@ exports.getOrderByOrderNumber = async (req, res) => {
 };
 
 exports.addOrder = async (req, res, next) => {
-  const query = `INSERT INTO orderFood(orderNumber, accountId, orderType, restaurantId, orderMenu, price, quantity, orderDate) VALUES ('${req.body.orderNumber}', '${req.body.accountId}', '${req.body.orderType}', '${req.body.restaurantId}', '${req.body.orderMenu}', '${req.body.price}', '${req.body.quantity}', '${req.body.orderDate}')`;
+  const query = `INSERT INTO orderMenu(email, orderFood, totalPrice) VALUES ('${req.body.email}', '${req.body.orderFood}', '${req.body.totalPrice}')`;
   pool.execute(query, function (err, result) {
     if (err) {
       res.send("error");
